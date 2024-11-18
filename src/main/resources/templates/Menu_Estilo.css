@@ -1,0 +1,81 @@
+ body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      background: linear-gradient(to right, #00221B, #008066);
+      padding: 20px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none; /* Remover o sublinhado padrão de links */
+      color: #fff; /* Cor do texto */
+    }
+
+    nav {
+      display: flex;
+      margin-left: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin-left: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      position: relative;
+      padding: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background: linear-gradient(to right, #00BFFF, #00FF7F);
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .globe {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .globe::before,
+    .globe::after {
+      content: "";
+      width: 12px;
+      height: 2px;
+      background-color: #fff;
+      position: absolute;
+    }
+
+    .globe::before {
+      transform: rotate(45deg);
+    }
+
+    .globe::after {
+      transform: rotate(-45deg);
+    }
