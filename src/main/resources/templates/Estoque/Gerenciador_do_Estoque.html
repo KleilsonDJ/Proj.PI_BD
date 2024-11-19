@@ -240,6 +240,7 @@ function formatarMoeda(input) {
 						<th>Imagem</th>
 						<th>Preço</th>
 						<th>Descrição</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -250,6 +251,9 @@ function formatarMoeda(input) {
 						<td th:text="${l.imagem}">URL da Imagem</td>
 						<td th:text="${l.preco}">Preço</td>
 						<td th:text="${l.descricao}">Descrição</td>
+						<td>
+						<a th:href="@{/Estoque/{id}/removerP(id=${l.id})}"><button>apagar</button></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
