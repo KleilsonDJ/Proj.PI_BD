@@ -1,10 +1,12 @@
 package ifrn.pi.ProjetoPBD.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,5 +52,16 @@ public class EstoqueController {
         ModelAndView mv = new ModelAndView("Estoque/Gerenciador_do_Estoque"); // Configura a página de listagem
         mv.addObject("listagenDOEstoque", listagenDOEstoque); // Adiciona a lista de produtos ao modelo
         return mv; // Retorna a página configurada com os dados
+    }
+    
+    @GetMapping("/{id}/removerP")
+    public String apagardoEstoque(@PathVariable Long id){
+    	Optional<Estoque> opt = estoquerepository.findById(id);
+    	
+    	if(!opt.isEmpty()){
+    		Estoque estoque = opt.get();
+    		estoquerepository.delete(estoque);
+    	}
+    	return"redirect:/Estoque";
     }
 }
