@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <title>GERENCIAR O ESTOQUE</title>
 
-<!-- Inclui o arquivo de estilo externo -->
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+
+<!-- Inclui o arquivo de estilo externo  a fazer-->
 <link rel="stylesheet" href="Menu_Funcionario.html">
 
 <style>
@@ -207,22 +212,24 @@ function formatarMoeda(input) {
 
 	<!-- Contêiner principal -->
 	<div class="container-wrapper">
+
+
 		<!-- Formulário para adicionar novos produtos -->
 		<div class="container">
 			<h1>ADICIONAR NOVO PRODUTO</h1>
 			<form action="/Estoque" method="post" th:object="${evento}">
-				<label for="nomeProduto">Nome Produto</label>
-				<input type="text" id="nomeProduto" name="nome" placeholder="Ex: Produto x">
-				
-				<label for="urlDaImagem">URL Da imagem</label>
-				<input type="text" id="urlDaImagem" name="imagem" placeholder="Ex: https://imagem.com/produto.jpg">
-				
-				<label for="preco">Preço</label>
-				<input type="text" id="preco" name="preco" oninput="formatarMoeda(this)" placeholder="R$ 00,00">
-				
+				<label for="nomeProduto">Nome Produto</label> <input type="text"
+					id="nomeProduto" name="nome" placeholder="Ex: Produto x"> <label
+					for="urlDaImagem">URL Da imagem</label> <input type="text"
+					id="urlDaImagem" name="imagem"
+					placeholder="Ex: https://imagem.com/produto.jpg"> <label
+					for="preco">Preço</label> <input type="text" id="preco"
+					name="preco" oninput="formatarMoeda(this)" placeholder="R$ 00,00">
+
 				<label for="descricao">Descrição</label>
-				<textarea id="descricao" name="descricao" placeholder="Ex: Smartphone com 128GB de armazenamento, câmera de 12MP, etc."></textarea>
-				
+				<textarea id="descricao" name="descricao"
+					placeholder="Ex: Smartphone com 128GB de armazenamento, câmera de 12MP, etc."></textarea>
+
 				<button type="submit">PUBLICAR</button>
 			</form>
 		</div>
@@ -230,7 +237,7 @@ function formatarMoeda(input) {
 		<!-- Área de rolagem para exibir o estoque -->
 		<div class="scroll-container">
 			<h1>ESTOQUE</h1>
-			
+
 			<!-- Tabela para exibir os produtos do estoque -->
 			<table>
 				<thead>
@@ -240,7 +247,7 @@ function formatarMoeda(input) {
 						<th>Imagem</th>
 						<th>Preço</th>
 						<th>Descrição</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>
@@ -251,14 +258,18 @@ function formatarMoeda(input) {
 						<td th:text="${l.imagem}">URL da Imagem</td>
 						<td th:text="${l.preco}">Preço</td>
 						<td th:text="${l.descricao}">Descrição</td>
-						<td>
-						<a th:href="@{/Estoque/{id}/removerP(id=${l.id})}"><button>apagar</button></a>
-						</td>
+						<td><a th:href="@{/Estoque/{id}/removerP(id=${l.id})}">
+						     <button style="padding: 5px 1px; font-size: 5px; border: none; cursor: pointer;">
+									<i class="material-icons" style="font-size: 16px;">delete</i>
+								</button></a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+
 	</div>
+
 
 </body>
 </html>

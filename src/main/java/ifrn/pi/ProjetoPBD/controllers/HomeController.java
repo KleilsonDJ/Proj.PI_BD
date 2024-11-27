@@ -23,5 +23,13 @@ public class HomeController {
         ModelAndView mv = new ModelAndView("Home/home"); // Página home
         mv.addObject("listagenDOEstoque", listagenDOEstoque); // Passa a lista para o template
         return mv;
+        
+       
     }
+    
+    @GetMapping("/Produto")
+    public String produto() {
+        return "Home/Produto";
+    }
+    
 }
