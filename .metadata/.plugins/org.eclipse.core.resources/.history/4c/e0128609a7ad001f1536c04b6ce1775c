@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Produtos</title>
+    <link rel="stylesheet" href="/Menu_Estilo.css">
+    <style>
+        /* Estilos para a listagem de produtos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2f1;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #008066;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #008066;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-card-content {
+            padding: 15px;
+        }
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00221B;
+        }
+        .product-price {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Remover estilo de link da tag <a> */
+        a {
+            text-decoration: none; /* Remove sublinhado */
+            color: inherit; /* Herda a cor do texto do elemento pai */
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="~{Menu_Funcionario :: Menu_Funcionario}"></header>
+
+<div class="container">
+    <h1>Produtos</h1>
+    <div class="product-grid">
+        <!-- Itera sobre os produtos do estoque -->
+        <div th:each="produto : ${listagenDOEstoque}" class="product-card">
+            <!-- Link para a página de detalhes, mas sem estilo de link -->
+            <a th:href="@{/produto/{id}(id=${produto.id})}">
+                <img th:src="@{${produto.imagem}}" alt="Imagem do Produto">
+                <div class="product-card-content">
+                    <p class="product-name" th:text="${produto.nome}">Nome do Produto</p>
+                    <p class="product-price" th:text="'R$ ' + ${produto.preco}">Preço do Produto</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

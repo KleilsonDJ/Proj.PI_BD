@@ -1,0 +1,26 @@
+package ifrn.pi.ProjetoPBD.controllers;
+
+import javax.print.PrintService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.qos.logback.core.model.Model;
+
+@Controller
+@RequestMapping("/produto")
+public class ProdutoController {
+
+    @Autowired
+    private PrintService produtoService;
+
+    @GetMapping("/{id}")
+    public String getDetalhesProduto(@PathVariable Long id, Model model) {
+        Produto produto = ((Object) produtoService).getProdutoById(id); // Método que busca o produto pelo ID
+        model.addAttribute("produto", produto); // Adiciona o produto ao modelo
+        return "detalhesProduto"; // Nome do template Thymeleaf
+    }
+}

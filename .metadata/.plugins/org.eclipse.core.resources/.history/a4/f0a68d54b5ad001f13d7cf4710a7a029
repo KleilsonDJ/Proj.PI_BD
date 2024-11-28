@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <!-- Metadados básicos -->
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo para dispositivos móveis -->
+
+  <!-- Estilos internos -->
+  <style>
+    /* Estilo global do corpo */
+    body {
+      margin: 0; /* Remove as margens padrão */
+      font-family: sans-serif; /* Define uma fonte padrão */
+    }
+
+    /* Estilo do cabeçalho */
+    header {
+      background: linear-gradient(to right, #00221B, #008066); /* Gradiente de cores */
+      padding: 20px; /* Espaçamento interno */
+      color: #fff; /* Texto em branco */
+      display: flex; /* Layout flexível para alinhamento horizontal */
+      justify-content: space-between; /* Espaço entre os itens */
+      align-items: center; /* Alinhamento vertical centralizado */
+    }
+
+    /* Estilo do logo */
+    .logo {
+      font-size: 24px; /* Tamanho do texto */
+      font-weight: bold; /* Texto em negrito */
+      text-transform: uppercase; /* Transformação para letras maiúsculas */
+      text-decoration: none; /* Remove sublinhado padrão dos links */
+      color: #fff; /* Cor do texto */
+    }
+
+    /* Estilo da navegação */
+    nav {
+      display: flex; /* Itens em linha */
+      margin-left: auto; /* Empurra os itens para o lado direito */
+    }
+
+    /* Estilo da lista de navegação */
+    nav ul {
+      list-style: none; /* Remove os marcadores de lista */
+      margin: 0; /* Remove margens padrão */
+      padding: 0; /* Remove espaçamento interno */
+      display: flex; /* Itens em linha */
+    }
+
+    /* Espaçamento entre itens da navegação */
+    nav li {
+      margin-left: 20px;
+    }
+
+    /* Estilo dos links de navegação */
+    nav a {
+      text-decoration: none; /* Remove sublinhado padrão dos links */
+      color: #fff; /* Cor do texto */
+      text-transform: uppercase; /* Transformação para letras maiúsculas */
+      position: relative; /* Para efeitos personalizados */
+      padding: 5px; /* Espaçamento interno */
+      transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+    }
+
+    /* Estilo ao passar o mouse sobre o link */
+    nav a:hover {
+      background: linear-gradient(to right, #00BFFF, #00FF7F); /* Efeito de gradiente */
+      color: #fff; /* Cor do texto */
+      border-radius: 5px; /* Bordas arredondadas */
+    }
+
+    /* Estilo do ícone "globe" (globo) */
+    .globe {
+      width: 30px; /* Largura do círculo */
+      height: 30px; /* Altura do círculo */
+      border-radius: 50%; /* Formato circular */
+      border: 2px solid #fff; /* Borda branca */
+      display: flex; /* Layout flexível para centralizar conteúdo */
+      justify-content: center; /* Alinha horizontalmente */
+      align-items: center; /* Alinha verticalmente */
+      margin-right: 20px; /* Espaçamento à direita */
+      position: relative; /* Para os efeitos personalizados no ::before e ::after */
+    }
+
+    /* Linhas diagonais dentro do globo */
+    .globe::before,
+    .globe::after {
+      content: ""; /* Insere um elemento vazio */
+      width: 12px; /* Largura das linhas */
+      height: 2px; /* Altura das linhas */
+      background-color: #fff; /* Cor branca */
+      position: absolute; /* Posicionamento relativo ao contêiner */
+    }
+
+    /* Primeira linha diagonal */
+    .globe::before {
+      transform: rotate(45deg); /* Rotação para criar o efeito diagonal */
+    }
+
+    /* Segunda linha diagonal */
+    .globe::after {
+      transform: rotate(-45deg); /* Rotação oposta */
+    }
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho do menu -->
+  <header th:fragment="Menu_Funcionario"> <!-- Fragmento Thymeleaf chamado "Menu_Funcionario" -->
+    
+    <!-- Logo -->
+    <a href="/" class="logo">LOGO</a>
+
+    <!-- Navegação -->
+    <nav>
+      <ul>
+        <li><a href="/home">HOME</a></li> <!-- Link para a página inicial -->
+        <li><a href="/Estoque">ESTOQUE</a></li> <!-- Link para a página de estoque -->
+        <li><a href="/Produto">Poduto</a></li> <!-- Link ou indicação de login -->
+      </ul>
+    </nav>
+
+    <!-- Ícone decorativo "globe" -->
+    <div class="globe"></div>
+  </header>
+</body>
+</html>

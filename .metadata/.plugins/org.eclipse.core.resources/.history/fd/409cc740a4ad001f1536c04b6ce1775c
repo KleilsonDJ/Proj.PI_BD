@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Produtos</title>
+    
+    
+    <style>
+        /* Estilo global */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e3f2f1; /* Cor de fundo suave */
+        }
+
+        /* Estilo do cabeçalho */
+        header {
+            background: linear-gradient(to right, #00221B, #008066); /* Gradiente de cores */
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between; /* Espaçamento entre itens */
+            align-items: center; /* Alinhamento vertical */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase; /* Todas as letras maiúsculas */
+            text-decoration: none; /* Remove sublinhado padrão */
+            color: #fff;
+        }
+
+        nav {
+            display: flex; /* Itens em linha */
+            margin-left: auto; /* Empurra itens para o lado direito */
+        }
+
+        nav ul {
+            list-style: none; /* Remove marcadores de lista */
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px; /* Espaçamento entre links */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px;
+            transition: background-color 0.3s; /* Transição ao passar o mouse */
+        }
+
+        nav a:hover {
+            background: linear-gradient(to right, #00BFFF, #00FF7F); /* Efeito hover */
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .globe {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%; /* Formato circular */
+            border: 2px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .globe::before, .globe::after {
+            content: "";
+            width: 12px;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+        }
+
+        .globe::before {
+            transform: rotate(45deg); /* Linha inclinada */
+        }
+
+        .globe::after {
+            transform: rotate(-45deg); /* Linha inclinada oposta */
+        }
+
+        /* Estilo do contêiner principal */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto; /* Centraliza horizontalmente */
+            padding: 20px;
+            background-color: #fff; /* Fundo branco */
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #008066; /* Cor de destaque */
+        }
+
+        /* Estilo do grid de produtos */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta o número de colunas conforme o tamanho da tela */
+            gap: 20px; /* Espaço entre itens */
+        }
+
+        /* Estilo dos cartões de produto */
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+            overflow: hidden; /* Evita conteúdo sair do cartão */
+            text-align: center;
+            border: 2px solid #008066; /* Borda colorida */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação ao passar o mouse */
+        }
+
+        .product-card:hover {
+            transform: scale(1.05); /* Amplia o cartão */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+        }
+
+        .product-card img {
+            width: 100%; /* Largura total do cartão */
+            height: 200px; /* Altura fixa */
+            object-fit: cover; /* Ajusta a imagem sem distorção */
+        }
+
+        .product-card-content {
+            padding: 15px; /* Espaçamento interno */
+        }
+
+        .product-name {
+            font-size: 18px; /* Tamanho da fonte */
+            font-weight: bold; /* Texto em negrito */
+            margin-bottom: 10px;
+            color: #00221B; /* Cor do texto */
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #666; /* Cor cinza */
+        }
+
+        .product-price::before {
+            content: "Preço: "; /* Prefixo exibido antes do preço */
+            font-weight: bold;
+            color: #008066; /* Cor de destaque */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cabeçalho -->
+<header th:replace="~{Menu_Funcionario :: Menu_Funcionario}"></header> <!-- Substitui por um fragmento Thymeleaf -->
+
+<div class="container">
+    <h1>Produtos</h1>
+    <!-- Grid de produtos -->
+    <div class="product-grid">
+        <!-- Itera sobre os produtos do estoque -->
+        <div th:each="produto : ${listagenDOEstoque}" class="product-card">
+            <!-- Imagem do produto -->
+            <img th:src="@{${produto.imagem}}" alt="Imagem do Produto">
+            <div class="product-card-content">
+                <!-- Nome do produto -->
+                <p class="product-name" th:text="${produto.nome}">Nome do Produto</p>
+                <!-- Preço do produto -->
+                <p class="product-price" th:text="'R$ ' + ${produto.preco}">Preço do Produto</p>
+                <!-- ID do produto -->
+                <p th:text="'ID: ' + ${produto.id}">ID do Produto</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

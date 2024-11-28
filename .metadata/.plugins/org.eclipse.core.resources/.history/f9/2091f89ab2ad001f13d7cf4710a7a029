@@ -1,0 +1,5 @@
+package ifrn.pi.ProjetoPBD.controllers;
+
+public class ProdutoController {
+
+}

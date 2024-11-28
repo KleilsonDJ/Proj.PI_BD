@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <!-- Metadados básicos -->
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo para dispositivos móveis -->
+
+
+</head>
+<body>
+  <!-- Cabeçalho do menu -->
+  <header th:fragment="Menu_Funcionario"> <!-- Fragmento Thymeleaf chamado "Menu_Funcionario" -->
+    
+    <!-- Logo -->
+    <a href="/" class="logo">LOGO</a>
+
+    <!-- Navegação -->
+    <nav>
+      <ul>
+        <li><a href="/home">HOME</a></li> <!-- Link para a página inicial -->
+        <li><a href="/Estoque">ESTOQUE</a></li> <!-- Link para a página de estoque -->
+        <li><a href="/Produto">Poduto</a></li> <!-- Link ou indicação de login -->
+      </ul>
+    </nav>
+
+    <!-- Ícone decorativo "globe" -->
+    <div class="globe"></div>
+  </header>
+</body>
+</html>

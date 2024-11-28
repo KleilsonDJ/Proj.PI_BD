@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GERENCIAR O ESTOQUE</title>
+    <!-- Arquivo de estilo externo -->
+    <link rel="stylesheet" type="text/css" href="/Menu_Estilo.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Estilo global para o corpo */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2f1; /* Cor do fundo */
+        }
+
+        /* Estilo do container principal */
+        .container-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            margin: 20px auto 50px;
+            padding-top: 20px;
+            justify-content: center;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 20px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            border: 2px solid #008066;
+            box-shadow: 12px 40px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #008066;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #008066;
+            color: white;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .scroll-container {
+            width: 500px;
+            height: 400px;
+            margin: 0 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #008066;
+            border-radius: 5px;
+            overflow-y: auto;
+            box-shadow: 12px 40px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #008066;
+            color: white;
+        }
+    </style>
+
+    <script>
+        /**
+         * Formata o campo de entrada para o formato monetário (R$)
+         * @param {HTMLInputElement} input - Campo que será formatado
+         */
+        function formatarMoeda(input) {
+            let valor = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+            valor = (valor / 100).toFixed(2) + ""; // Formata com duas casas decimais
+            valor = valor.replace(".", ","); // Substitui ponto por vírgula
+            valor = "R$ " + valor; // Adiciona o símbolo de moeda
+            input.value = valor; // Atualiza o campo
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Cabeçalho com componente Thymeleaf -->
+    <header th:replace="~{Menu_Funcionario :: Menu_Funcionario}"></header>
+
+    <!-- Contêiner principal -->
+    <div class="container-wrapper">
+
+        <!-- Formulário para adicionar novos produtos -->
+        <div class="container">
+            <h1>ADICIONAR NOVO PRODUTO</h1>
+            <form action="/Estoque" method="post" th:object="${evento}">
+                <label for="nomeProduto">Nome Produto</label>
+                <input type="text" id="nomeProduto" name="nome" placeholder="Ex: Produto x">
+                <label for="urlDaImagem">URL Da imagem</label>
+                <input type="text" id="urlDaImagem" name="imagem" placeholder="Ex: https://imagem.com/produto.jpg">
+                <label for="preco">Preço</label>
+                <input type="text" id="preco" name="preco" oninput="formatarMoeda(this)" placeholder="R$ 00,00">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" placeholder="Ex: Smartphone com 128GB de armazenamento, câmera de 12MP, etc."></textarea>
+                <button type="submit">PUBLICAR</button>
+            </form>
+        </div>
+
+        <!-- Área de rolagem para exibir o estoque -->
+        <div class="scroll-container">
+            <h1>ESTOQUE</h1>
+
+            <!-- Tabela para exibir os produtos do estoque -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Imagem</th>
+                        <th>Preço</th>
+                        <th>Descrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Thymeleaf itera sobre a lista de produtos -->
+                    <tr th:each="l : ${listagenDOEstoque}">
+                        <td th:text="${l.id}">ID</td>
+                        <td th:text="${l.nome}">Nome</td>
+                        <td th:text="${l.imagem}">Imagem</td>
+                        <td th:text="${l.preco}">Preço</td>
+                        <td th:text="${l.descricao}">Descrição</td>
+                        <td>
+                            <a th:href="@{'/Estoque/{id}/removerP(id=${l.id})}">
+                                <button style="padding: 5px 1px; font-size: 5px; border: none; cursor: pointer;">
+                                    <i class="material-icons" style="font-size: 16px;">delete</i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

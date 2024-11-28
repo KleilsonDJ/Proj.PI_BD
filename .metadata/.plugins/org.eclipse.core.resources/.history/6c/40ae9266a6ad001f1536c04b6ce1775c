@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="/Menu_Estilo.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #008066;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .product-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .product-image {
+            width: 48%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-details {
+            width: 48%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-details h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .product-details p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .product-details .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #008066;
+            margin: 20px 0;
+        }
+        .product-details .add-to-cart {
+            background-color: #008066;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .product-details .add-to-cart:hover {
+            background-color: #006d4e;
+        }
+        .description {
+            margin-top: 20px;
+        }
+        .description h2 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .description p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="~{Menu_Funcionario :: Menu_Funcionario}"></header>
+
+<div class="product-container">
+    <img th:src="@{${produto.imagem}}" alt="Imagem do Produto" class="product-image">
+    <div class="product-details">
+        <h1 th:text="${produto.nome}">Nome do Produto</h1>
+        <p th:text="'Marca: ' + ${produto.marca}">Marca do Produto</p>
+        <p th:text="'Código: ' + ${produto.id}">Código do Produto</p>
+        <p class="price" th:text="'R$ ' + ${produto.preco}">Preço do Produto</p>
+        <button class="add-to-cart">Adicionar ao Carrinho</button>
+        <button class="add-to-cart">Comprar Agora</button>
+
+        <div class="description">
+            <h2>Descrição</h2>
+            <p th:text="${produto.descricao}">Descrição do Produto</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
